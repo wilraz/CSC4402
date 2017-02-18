@@ -1,0 +1,4 @@
+1. Create a query that will find available mentors for a new student.
+2. Create a query that pairs a mentor with a mentee.
+3. Create a query that will move a student to the alumni table, altering the apropriate fields.
+4. 
