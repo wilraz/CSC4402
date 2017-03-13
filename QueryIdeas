@@ -5,3 +5,7 @@
 5. Create a table listing mentor protege pairs, should be a standing table, not an intermediate table
 5a. Weak relational table, mentor_id references Members & protege_id references Applicants
 5b. No Primary Key in mentors_proteges table (working title of schema)
+6. Create a query which lists all the members which last name starts with a C and contain a m in the firts name.
+7. Create a query which lists all mentors and mentees which belong to the same university department.
+8. Create a query which lists all members with ID greater than 89...150 intersected with a query which lists all alumni with ID greater than 50.
+9. Create a query which counts all members, applicant, and alumni in the Computer Science department. Order the query alphabethically.
