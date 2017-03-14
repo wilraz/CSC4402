@@ -9,3 +9,7 @@
 7. Create a query which lists all mentors and mentees which belong to the same university department.
 8. Create a query which lists all members with ID greater than 89...150 intersected with a query which lists all alumni with ID greater than 50.
 9. Create a query which counts all members, applicant, and alumni in the Computer Science department. Order the query alphabethically.
+10. Create a query which lists all members which are in either 1srt or 2nd year of college.
+11. Create a query which lists all members which are in their 4th year of college and belong to the *** department.
+12. Create a query which lists mentors in the 4th year of college with mentees in their 1st year of college.
+13. Create a query which lists mentors in their 3rd year of college and have no mentee.
