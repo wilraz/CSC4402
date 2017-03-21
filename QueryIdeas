@@ -1,15 +1,77 @@
 1. Create a query that will find available mentors for a new student.
+  SELECT lName, fName
+  FROM   Members 
+  WHERE  mentee is NULL
+  
 2. Create a query that pairs a mentor with a mentee.
+  SELECT M.lName, M.fName, N.lName, N.fName
+  FROM   Members as M, Members as N
+  WHERE  M.sid=N.mentor
+
 3. Create a query that will move a student to the alumni table, altering the apropriate fields.
 4. Create queries that will create lists for inviting members to functions.
 5. Create a table listing mentor protege pairs, should be a standing table, not an intermediate table
-  5a. Weak relational table, mentor_id references Members & protege_id references Applicants
-  5b. No Primary Key in mentors_proteges table (working title of schema)
-6. Create a query which lists all the members which last name starts with a C and contain a m in the firts name.
+	5a. Weak relational table, mentor_id references Members & protege_id references Applicants
+	5b. No Primary Key in mentors_proteges table (working title of schema)
+
+6. Create a query which lists all the members which last name starts with a C and contain a M in the firts name.
+	SELECT lName, fName
+  FROM   Members
+  WHERE  lName like 'C%' and fName like '%M%'
+
 7. Create a query which lists all mentors and mentees which belong to the same university department.
-8. Create a query which lists all members with ID greater than 89...150 intersected with a query which lists all alumni with ID greater than 50.
-9. Create a query which counts all members, applicant, and alumni in the Computer Science department. Order the query alphabethically.
+  SELECT M.lName, M.fName, N.lName, NlfName
+  FROM   Members as M, Members as N
+  WHERE  M.sid=N.Mentor and M.major=N.major 
+
+8. Create a query which lists all members with ID greater than 89...150 and lists all alumni with ID greater than 50.
+	(SELECT sid, lName, fName
+   FROM   Members
+   WHERE  sid>890000150)
+  union 
+	(SELECT aid, lName, fName
+   FROM   Alumni
+   WHERE  aid>50)
+
+9. Create a query which counts all applicants in the Computer Science department.
+	SELECT count(lName)
+	FROM   Applicants
+	WHERE  major="Computer Science"
+
 10. Create a query which lists all members which are in either 1srt or 2nd year of college.
-11. Create a query which lists all members which are in their 4th year of college and belong to the *** department.
-12. Create a query which lists mentors in the 4th year of college with mentees in their 1st year of college.
+	SELECT lName, fName 
+	FROM   Members
+	HAVING year < 3
+
+11. Create a query which lists all members which are in their 4th year of college and belong to the Computer Engineer department.
+	SELECT lName, fName
+	FROM   Members
+	WHERE  year=4 and sid in (SELECT sid
+                            FROM   Members
+                            WHERE  major="Computer Engineer")
+
+12. Create a query which lists mentors id in the 4th year of college with mentees in their 1st year of college.
+	SELECT sid
+	FROM   Members as M
+	WHERE  year=4 and exists (SELECT *
+                            FROM   Members as N
+                            WHERE  year=1 and M.sid=N.mentor)
+
 13. Create a query which lists mentors in their 3rd year of college and have no mentee.
+	SELECT lName, fName
+	FROM   (SELECT lName, fName, year
+          FROM   Members
+          WHERE  mentee is NULL) as noMentee(lName,fName,year)
+  WHERE  year=3
+
+14. Create a query which creates a view which lists all applicants having rank less than 5.
+	create view goodApplicants as 
+    SELECT sid, lName, name, rank
+    FROM Applicants
+    HAVING rank < 5
+
+15. Create a query which creates a view which lists all applicants with a partner id.
+	create view applicantWithPartner(app_id) as
+    SELECT sid
+    FROM   Applicant
+    WHERE  partner is not NULL
