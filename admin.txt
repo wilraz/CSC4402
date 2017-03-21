@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title> GeauxTutors</title>
+	<meta charset="utf-8">
+	<base href="/ji02Td5aR1v8AS5.html">
+	<!-- Set default to 100% screen size -->
+	<meta name="viewport" content="width-device-width, initial-scale=1">	
+	<!-- Importing Bootstrap libraries -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!-- CSS formatting -->
+	<style>
+	h1 {
+		text-align:center;
+	}	
+	h2 {
+		text-align:center;
+	}
+	h3 {
+		text-align: center;
+	}
+	.reg {
+		text-align:center
+	}
+	.checkdis {
+		text-align:left
+	}
+	</style>
+</head>
+<body>
+	
+	<div class="container-fluid" style="background-color: #ffcc00">		
+	<div class="jumbotron" style="background-color: #ffcc00">
+		<h1>
+			<strong>
+				<font color="#400080">
+				<font size="12pt">
+				GeauxTutors - Admin		
+				</font>
+				</font>
+			</strong>
+		</h1>		
+	</div>
+		<div class = "row">
+			<div class="col-md-10" style="background-color: #400080"><!--Purple-->
+				<font color="grey">
+				<font size="4pt">
+				<p>
+					</br>
+					 	<h1>Student Query</h1>
+						<h3>Search for a specific student by name</br>
+						Please make sure you enter the full first and last name.</h3>
+						<div class="reg">							
+							<form class="form-inline" action="/Servlet1/UserPull" method="post">
+								<div class="form-group">
+									<label class="sr-only">Student</label>									
+								</div>
+								<div class="form-group">
+									<label for="inputname" class="sr-only">Student</label>
+									<input type="text" class="form-control" name="name" placeholder="Student Name">
+								</div>
+								<button type="submit" class="btn btn-warning">Search</button>
+							</form>
+						</div></br>						
+				</p>	
+				<p>
+					</br>
+					 	<h1>Tutor Query</h1>
+						<h3>Search for a specific tutor by name</br>
+						Please make sure you enter the full first and last name.</h3>
+						<div class="reg">
+							<form class="form-inline" action="/Servlet1/TutorPull" method="post">
+								<div class="form-group">
+									<label class="sr-only">Tutor</label>									
+								</div>
+								<div class="form-group">
+									<label for="inputname" class="sr-only">Tutor</label>
+									<input type="text" class="form-control" name="name" placeholder="Tutor Name">
+								</div>
+								<button type="submit" class="btn btn-warning">Search</button>
+							</form>
+						</div></br>												
+				</p>	
+				<h1>Student List</h1>
+					<div class="reg">
+						<form action="/Servlet1/UserDump" method="post">
+							<div class="checkbox">
+									<label class="checkdis">										
+										<input type="checkbox" value="understood" id="check1"/>	
+										<h4><strong>I wish to see all students currently registered</strong></h4>
+									</label>
+								</div>
+								<input type="submit" value="SEE ALL" id="bclick1" />
+						</form>
+					</div></br>
+				</p>
+				<p>
+				<h1>Tutor List</h1>
+					<div class="reg">
+						<form action="/Servlet1/TutorDump" method="post">
+							<div class="checkbox">
+									<label class="checkdis">										
+										<input type="checkbox" value="understood" id="check2"/>										 
+										<h4><strong>I wish to see all tutors currently registered</strong></h4>
+									</label>
+								</div>
+								<input type="submit" value="SEE ALL" id="bclick2" />
+						</form>
+					</div></br>
+				</p>
+				</font> 
+				</font>
+			</div>
+			<div class="col-md-2" style="background-color: #ffcc00"><!--Gold-->
+				<strong>
+				<h3></br>
+				Main Menu
+				</h3>
+				</strong>
+				</br></br></br>
+				<font size="2pt">
+				<a href="/home.html">
+				Home</a>
+				</br></br>
+				<a href="/register.html">
+				Register</a>
+				</br></br>
+				<a href="/policy.html">
+				Policies</a>                                      
+				</br></br>
+				<a href="/tips.html">
+				Tips</a>
+				</br></br>
+				<a href="https://www.facebook.com/lsututors">
+				Facebook Page </a>
+				</br></br>
+				<a href="mailto:geauxtutors@gmail.com">
+				Contact Us </a>
+				</br></br>
+				</font>
+			</div>		
+	</div>
+	<script type='text/javascript'>              
+													<!--disable button1-->
+	$('#check1').change(function(){
+		$('#bclick1').prop("disabled", !this.checked);
+	}).change();
+													<!--disable button2-->
+	$('#check2').change(function(){
+		$('#bclick2').prop("disabled", !this.checked);
+	}).change();
+	</script>
+</body>
+</html>
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help
