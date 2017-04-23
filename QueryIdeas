@@ -16,13 +16,13 @@
 
 6. Create a query which lists all the members which last name starts with a C and contain a M in the firts name.
 	SELECT lName, fName
-  FROM   Members
-  WHERE  lName like 'C%' and fName like '%M%'
+  FROM   members
+  WHERE  lName like 'H%' and fName like '%S%'
 
 7. Create a query which lists all mentors and mentees which belong to the same university department.
-  SELECT M.lName, M.fName, N.lName, NlfName
-  FROM   Members as M, Members as N
-  WHERE  M.sid=N.Mentor and M.major=N.major 
+  SELECT M.lName, M.fName, N.lName, N.fName
+  FROM   members as M, members as N
+  WHERE  M.sid=N.Mentee and M.major=N.major 
 
 8. Create a query which lists all members with ID greater than 89...150 and lists all alumni with ID greater than 50.
 	(SELECT sid, lName, fName
@@ -44,6 +44,7 @@
 	HAVING year < 3
 
 11. Create a query which lists all members which are in their 4th year of college and belong to the Computer Engineer department.
+/* not working */
 	SELECT lName, fName
 	FROM   Members
 	WHERE  year=4 and sid in (SELECT sid
