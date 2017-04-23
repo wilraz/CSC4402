@@ -91,7 +91,7 @@ public class load_stuff extends HttpServlet {
 		
 		String docType = "<!doctype html public \"-//w3c//dtd html 4.0 transitional//en\">\n";
 		out.println(docType +
-		"<html\n" +
+		"<html>\n" +
 		//"<head><title>Tutor Retrieval</title></head>\n" +
 		"<body>\n" +
 		"<ul>\n" +
