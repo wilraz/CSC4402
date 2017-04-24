@@ -71,10 +71,9 @@
 
 13. Create a query which lists mentors in their 3rd year of college and have no mentee.
 	SELECT lName, fName
-	FROM   (SELECT lName, fName, year
-          FROM   Members
-          WHERE  mentee is NULL) as noMentee(lName,fName,year)
-  WHERE  year=3
+	FROM   (SELECT lName, fName
+          FROM   members
+          WHERE  mentee='' AND  year=3) as noMentee
 
 14. Create a query which creates a view which lists all applicants having rank less than 5.
 	create view goodApplicants as 
