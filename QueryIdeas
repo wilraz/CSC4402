@@ -64,10 +64,10 @@
 
 12. Create a query which lists mentors id in the 4th year of college with mentees in their 1st year of college.
 	SELECT sid
-	FROM   Members as M
-	WHERE  year=4 and exists (SELECT *
-                            FROM   Members as N
-                            WHERE  year=1 and M.sid=N.mentor)
+	FROM   Members
+	WHERE  year=4 and sid in (SELECT M.sid
+                            FROM   Members as M, members as n
+                            WHERE  n.year=1 and M.mentee=n.sid)
 
 13. Create a query which lists mentors in their 3rd year of college and have no mentee.
 	SELECT lName, fName
