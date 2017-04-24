@@ -15,6 +15,8 @@
 	WHERE year = 4
 	
 4. Create queries that will create lists for inviting members to functions.
+	SELECT DISTINCT sid, m.lName, m.fName
+	FROM members AS m
 5. Create a table listing mentor protege pairs, should be a standing table, not an intermediate table
 	5a. Weak relational table, mentor_id references Members & protege_id references Applicants
 	5b. No Primary Key in mentors_proteges table (working title of schema)
