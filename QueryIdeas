@@ -77,12 +77,14 @@
 
 14. Create a query which creates a view which lists all applicants having rank less than 5.
 	create view goodApplicants as 
-    SELECT sid, lName, name, rank
-    FROM Applicants
-    HAVING rank < 5
+    	SELECT sid, lName, name, rank
+   	 FROM Applicants
+    	HAVING rank < 5
 
-15. Create a query which creates a view which lists all applicants with a partner id.
-	create view applicantWithPartner(app_id) as
-    SELECT sid
-    FROM   Applicant
-    WHERE  partner is not NULL
+15. Create a query which creates a view which lists all names that replicating. 
+
+    create view applicantWithreplicantname(app_firstName) as
+    ( SELECT DISTINCT a.fName
+      FROM   applicants as a, applicants as b
+      WHERE a.fName=b.fName AND a.lName!=b.lName
+    )
