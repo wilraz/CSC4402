@@ -1,0 +1,132 @@
+/*
+	1. Create a query that will find available mentors for a new student.
+
+	**** working but no any out b/c there are no any records in mentee **** 
+*/
+  SELECT lName, fName
+  FROM   members 
+  WHERE  mentee is NULL
+
+/*
+2. Create a query that pairs a mentor with a mentee.
+
+	not working:
+	 no mentor column in members 
+*/
+
+  SELECT M.lName, M.fName, N.lName, N.fName
+  FROM   members as M, members as N
+  WHERE  M.sid=N.mentor
+
+
+/*
+	 6: Create a query which lists all the members which last name starts with a C and contain a M in the firts name.
+* chages:
+	there is no lname srat with 'c' and have 'm' in fname 
+* 	so changes H to S 
+*/
+SELECT lName, fName
+  FROM   Members
+  WHERE  lName like 'H%' and fName like '%S%'
+
+
+/* 
+    7. Create a query which lists all mentors and mentees which belong to the same university department.
+    changes: 
+    		no mentor column in members so changes to mentee
+
+*/
+SELECT M.lName, M.fName, N.lName, N.fName
+  FROM   members as M, members as N
+  WHERE  M.sid=N.mentee and M.major=N.major
+
+
+/*
+	8. Create a query which lists all members with ID greater than 89...150 and lists all alumni with ID greater than 50.
+*/
+
+(SELECT sid, lName, fName
+   FROM   Members
+   WHERE  sid>890000150)
+  union 
+	(SELECT aid, lName, fName
+   FROM   Alumni
+   WHERE  aid>50)
+
+/*
+	9.  Create a query which counts all applicants in the Computer Science department.
+*/
+
+SELECT count(lName)
+	FROM   applicants
+	WHERE  major="Dance"
+
+
+/*
+	10. Create a query which lists all members which are in either 1srt or 2nd year of college.
+
+	problem: gave "having clause" erorr 
+
+	changes : so i just add "year" in and it worked
+*/
+
+	SELECT lName, fName, year
+	FROM   Members
+	HAVING year < 3
+
+/*
+	11. Create a query which lists all members which are in their 4th year of college and belong to the Computer Engineer department.
+
+	changes: spelling change
+*/
+
+	SELECT lName, fName
+	FROM   Members
+	WHERE  year=4 and sid in (SELECT sid
+                            FROM   Members
+                            WHERE  major="Computer Engineering")
+
+/*
+	12. Create a query which lists mentors id in the 4th year of college with mentees in their 1st year of college.
+
+	not working 
+*/
+
+	SELECT sid
+	FROM   Members as M
+	WHERE  year=4 and exists (SELECT *
+                            FROM   Members as N
+                            WHERE  year=1 and M.sid=N.mentor)
+
+/*
+	13. Create a query which lists mentors in their 3rd year of college and have no mentee.
+
+	not working : error 
+*/
+	SELECT lName, fName
+	FROM   (SELECT lName, fName, year
+          FROM   members
+          WHERE  mentee is NULL) as noMentee(lName,fName,year)
+  WHERE  year=3
+
+/*
+  14. Create a query which creates a view which lists all applicants having rank less than 5.
+
+  working
+ */
+
+	create view goodApplicants as 
+    SELECT sid, lName, name, rank
+    FROM applicants
+    HAVING rank < 5
+
+ /*
+ 	15. Create a query which creates a view which lists all applicants with a partner id.
+
+ 	not working: no "partner" column in applicants 
+
+*/
+	create view applicantWithPartner(app_id) as
+    SELECT sid
+    FROM   applicants
+    WHERE  partner is not NULL
