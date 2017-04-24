@@ -20,6 +20,10 @@
 5. Create a table listing mentor protege pairs, should be a standing table, not an intermediate table
 	5a. Weak relational table, mentor_id references Members & protege_id references Applicants
 	5b. No Primary Key in mentors_proteges table (working title of schema)
+	CREATE TABLE mentor_protege AS
+ 	SELECT m.sid AS mentor_id, m.mentee AS protege_id
+   	 FROM members AS m, members AS n
+    	WHERE m.mentee=n.sid
 
 6. Create a query which lists all the members which last name starts with a C and contain a M in the firts name.
 	SELECT lName, fName
