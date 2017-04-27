@@ -28,28 +28,77 @@
 <div class="container">
 	<!-- Menu -->
 	<div class="list-group" id="myList">
-		<div class="alumnis" id="alumnisSearch">
-		<a href="#alumnis" class="list-group-item list-group-item active"> Sororities </a>
+		<div class="alumnies" id="Search">
+		<a href="#alumnies" class="list-group-item list-group-item-action"> Alumni </a>
 		</div>
-		<!--
+		
+		<div class="members" id="alumnisSearch">
+		<a href="#members" class="list-group-item list-group-item active"> Members </a>
+		</div>
+		
+		<div class="applicants" id="apllicantsSearch">
 		<a href="#applicants" class="list-group-item list-group-item-action"> Applicants </a>
-		<a href="#Members" class="list-group-item list-group-item-action"> Members </a>
-		-->
+		</div>
 	</div>
-	
-	<!-- Modal -->
+		
+	<!-- Alumni Modal -->
 	<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog">
-
 			<div class="modal-content">
 				<div class="modal-header" >
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body" style="padding: 70px 80px;">
-					<form class="form-inline" action = "/server1/load_stuff" method="post">
+					<form class="form-inline" action="AlumniServlet" method="get">
+						<div class="form-group">
+							<label for="aId"> <span class="glyphicon glyphicon-aId"></span>Alumni ID</label>
+							<input name="aId" type="text" class="form-control" id="aid" placeholder="Alumni Id">
+						</div> 
+						<!-- Student first name input -->
+						<div class="form-group">
+							<label for="fname"> <span class="glyphicon glyphicon-firstname"></span>First Name</label>
+							<input name ="fname" type="text" class="form-control" id="fName" placeholder="First Name">
+						</div> 
+						<!-- Student Last Name input-->
+						<div class="form-group">
+							<label for="lname"> <span class="glyphicon glyphicon-lastname"></span> Last Name</label>
+							<input name="lname" type="text" class="form-control" id="lName" placeholder="Last Name">
+						</div>
+						<!-- Company input-->
+						<div class="form-group">
+							<label for="company"> <span class="glyphicon glyphicon-lastname"></span> Company</label>
+							<input name="acompany" type="text" class="form-control" id="company" placeholder="Company">
+						</div>
+						<!-- Student major label and input-->
+						<div class="form-group">
+							<label for="Amajor"><span class="glyphicon glyphicon-datePickerYear"> </span> Major</label>
+							<input name = "Amajor" type="text" class="form-control" id="year" placeholder="Click to show datepicker">
+						</div> 
+
+							<!-- submit button -->
+							<button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span></button>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Cancel</button>	
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- Members Modal -->
+	<div class="modal fade" id="membersModal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" >
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body" style="padding: 70px 80px;">
+					<form class="form-inline" action="mainServlet" method="get">
 						<div class="form-group">
 							<label for="sId"> <span class="glyphicon glyphicon-sId"></span>Student ID</label>
-							<input type="text" class="form-control" id="sid" placeholder="Student Id">
+							<input name="sId" type="text" class="form-control" id="sid" placeholder="Student Id">
 
 						</div> 
 						<!-- Student first name input -->
@@ -79,25 +128,59 @@
 			</div>
 		</div>
 	</div>
+
+
+	<!-- Applicants Modal -->
+	<div class="modal fade" id="applicantsModal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" >
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body" style="padding: 70px 80px;">
+					<form class="form-inline" action="servlet1" method="get">
+						<!-- Student Id label and input-->
+						<div class="form-group">
+							<label for="sId"> <span class="glyphicon glyphicon-sId"></span>Student ID</label>
+							<input name="sId" type="text" class="form-control" id="sid" placeholder="Student Id">
+						</div> 
+						<!-- Student first name input -->
+						<div class="form-group">
+							<label for="fname"> <span class="glyphicon glyphicon-firstname"></span>First Name</label>
+							<input name ="fname" type="text" class="form-control" id="fName" placeholder="First Name">
+						</div> 
+						<!-- Student Last Name input-->
+						<div class="form-group">
+							<label for="lname"> <span class="glyphicon glyphicon-lastname"></span> Last Name</label>
+							<input name="lname" type="text" class="form-control" id="lName" placeholder="Last Name">
+						</div>
+						<!-- Student major label and input-->
+						<div class="form-group">
+							<label for="Amajor"><span class="glyphicon glyphicon-datePickerYear"> </span> Major</label>
+							<input name = "Amajor" type="text" class="form-control" id="year" placeholder="Click to show datepicker">
+						</div> 
+						<!-- Student year label and input-->
+						<div class="form-group">
+							<label for="Ayear"><span class="glyphicon glyphicon-datePickerYear"> </span> Year</label>
+							<input name = "Ayear" type="text" class="form-control" id="year" placeholder="Click to show datepicker">
+						</div> 
+						<!-- Student rank label and input-->
+						<div class="form-group">
+							<label for="Arank"><span class="glyphicon glyphicon-datePickerYear"> </span> Rank</label>
+							<input name = "Arank" type="text" class="form-control" id="rank" placeholder="Click to show datepicker">
+						</div>
+							<!-- submit button -->
+							<button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span></button>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Cancel</button>	
+				</div>
+			</div>
+		</div>
+	</div>
+	
 </div>
-
-<script type="text/javascript">
-	$(function(){
-		$('#SelectYear').datepicker({
-			changeYear: true,
-			showButtonPanel: true,
-			dateFormat: 'yy',
-			onClose: function(dateText, inst){
-				var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-				$(this).datepicker('setDate', new Date(year, 1));
-			}
-		});
-
-	$(".year-picker").focus(function(){
-		$(".ui-datepicker-month").hide();
-		});
-	});
-</script>
 </body>
 </html>
 
