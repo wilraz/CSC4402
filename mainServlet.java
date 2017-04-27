@@ -55,7 +55,7 @@ public class mainServlet extends HttpServlet {
 			String PASS = "HARnir88";
 			Connection conn = null;
 			
-  	  out.println("<!DOCTYPE html>");
+		out.println("<!DOCTYPE html>");
         out.println("<html><head>");
         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
         out.println("<title>Main Servlet</title></head>");
@@ -71,8 +71,9 @@ public class mainServlet extends HttpServlet {
 				System.out.println("Creating statement...");
 				PreparedStatement ps =(PreparedStatement) conn.prepareStatement("SELECT * FROM members WHERE sid=?"); 
 				//STEP 5: Extract data from result set
-				ps.setString(1,sId);
 				
+				ps.setString(1,sId);
+
 				out.println("<table width=50% border=1>");  
 				ResultSet rs = (ResultSet) ps.executeQuery();
 			
@@ -86,7 +87,12 @@ public class mainServlet extends HttpServlet {
 				out.println("</tr>");  
 	
 				while(rs.next()){
-					out.println("<tr><td>"+rs.getString(1)+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td></tr>");  
+					out.println("<tr><td>"+rs.getString(1)+"</td><td>"
+							+rs.getString(2)+"</td><td>"
+							+rs.getString(3)+"</td><td>" 
+							+rs.getString(4)+"</td><td>"
+							+rs.getString(5)+"</td><td>"
+							+rs.getInt(6)+"</td></tr>");  
 				}
 				out.println("</table>");
 				 
