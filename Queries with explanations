@@ -1,0 +1,105 @@
+1. Create a query that will find available mentors for a new student.
+  SELECT lName, fName
+  FROM   members 
+  WHERE  mentee=''
+This query displays all the current members which does not have a mentee.
+
+  
+2. Create a query that pairs a mentor with a mentee.
+  SELECT M.lName, M.fName, N.lName, N.fName
+  FROM   Members as M, Members as N
+  WHERE  M.sid=N.mentor
+This query displays a pair consisting of mentor and mentee
+
+3. Create a query that will move a student to the alumni2 table, altering the apropriate fields.
+  CREATE TABLE alumni2 AS
+  SELECT lName, fName
+  FROM   members
+  WHERE year = 4
+This query creates a new table named alumni2 and pass into it the attributes lName and fName from members where year equals 4 in the tuple.
+	
+4. Create queries that will create lists for inviting members to functions.
+  SELECT DISTINCT sid, m.lName, m.fName
+  FROM members AS m
+This query displays all current members that can be invited for a function.
+
+5. Create a table listing mentor protege pairs, should be a standing table, not an intermediate table
+	5a. Weak relational table, mentor_id references Members & protege_id references Applicants
+	5b. No Primary Key in mentors_proteges table (working title of schema)
+  CREATE TABLE mentor_protege AS
+  SELECT m.sid AS mentor_id, m.mentee AS protege_id
+  FROM members AS m, members AS n
+  WHERE m.mentee=n.sid
+This query creates a new table mentor_protege where mentor and mentee name are passed into it.
+
+6. Create a query which lists all the members which last name starts with a C and contain a M in the firts name.
+  SELECT lName, fName
+  FROM   members
+  WHERE  lName like 'H%' and fName like '%S%'
+This query displays all current members with the letter H in the last Name and the letter S in their first name.
+
+7. Create a query which lists all mentors and mentees which belong to the same university department.
+  SELECT M.lName, M.fName, N.lName, N.fName
+  FROM   members as M, members as N
+  WHERE  M.mentee=N.sid and M.major=N.major 
+This query displays all mentor and mentee who belong to the same university deparment.
+
+8. Create a query which lists all members with ID greater than 89...150 and lists all alumni with ID greater than 50.
+  (SELECT sid, lName, fName
+  FROM   Members
+  WHERE  sid>890000150)
+  union 
+  (SELECT aid, lName, fName
+  FROM   Alumni
+  WHERE  aid>50)
+This query displays all members having sid greater than 890000150 and all alumni having aid greater than 50.
+
+9. Create a query which counts all applicants in the Computer Science department.
+  SELECT count(lName)
+  FROM   applicants
+  WHERE  major="Computer Science"
+This query displays the total number of applicants in Computer Science.
+
+10. Create a query which lists all members which are in either 1srt or 2nd year of college.
+  SELECT lName, fName 
+  FROM   Members
+  HAVING year < 3
+This query displays all members who are either a freshman or a sophomore.
+
+11. Create a query which lists all members which are in their 4th year of college and belong to the Computer Engineer department.
+  SELECT lName, fName
+  FROM   Members
+  WHERE  year=4 and sid in (SELECT sid
+                            FROM   Members
+                            WHERE  major="Computer Engineer")
+This query displays all members who are a senior and has as major Computer Engineer.
+
+12. Create a query which lists mentors id in the 4th year of college with mentees in their 1st year of college.
+  SELECT sid
+  FROM   Members
+  WHERE  year=4 and sid in (SELECT M.sid
+                            FROM   Members as M, members as n
+                            WHERE  n.year=1 and M.mentee=n.sid)
+This query displays the sid of all members who are seniors and have a mentee in his or her first year of school.
+
+13. Create a query which lists mentors in their 3rd year of college and have no mentee.
+  SELECT lName, fName
+  FROM   (SELECT lName, fName
+          FROM   members
+          WHERE  mentee='' AND  year=3) as noMentee
+This query display the last name and fname of all member without a mentee and who are currently a junior.
+
+14. Create a query which creates a view which lists all applicants having rank less than 5.
+  create view goodApplicants as 
+  SELECT sid, lName, name, rank
+  FROM Applicants
+  HAVING rank < 5
+This query creates a view which displays those applicants' sid, last name, first name, and rank where rank is less than five.
+
+15. Create a query which creates a view which lists all names that replicating. 
+  create view applicantWithreplicantname(app_firstName) as
+  (SELECT DISTINCT a.fName
+   FROM   applicants as a, applicants as b
+   WHERE a.fName=b.fName AND a.lName!=b.lName
+  )
+This query creates a view which displays the first names that are found more the once in the applicant table.
